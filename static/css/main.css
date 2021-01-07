@@ -1,0 +1,37 @@
+.grid { 
+    margin:1em auto; 
+    border-collapse:collapse 
+  }
+  .grid td {
+      cursor:pointer;
+      width:30px; 
+      height:30px;
+      border:1px solid rgb(163, 65, 65); 
+  }
+  .grid td.clicked {
+      background-color:red;
+      color:red;
+  }
+  
+  .instructions{
+    width: 1875px;
+    height: 25px;
+    text-align: right;
+    background-color: lightgrey;
+    font-size: 20px;
+  }
+  
+  .wall{
+    background-color:grey;
+    color:grey;
+    
+  }
+  
+  .visualizeButton{
+    height:20px; 
+    width:100px; 
+    margin: -20px -50px; 
+    position:relative;
+    top:50%; 
+    left:50%;
+  }

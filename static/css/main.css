@@ -1,3 +1,4 @@
+
 .grid { 
     margin:1em auto; 
     border-collapse:collapse 
@@ -6,7 +7,7 @@
       cursor:pointer;
       width:30px; 
       height:30px;
-      border:1px solid rgb(163, 65, 65); 
+      border:1px solid #ccc; 
   }
   .grid td.clicked {
       background-color:red;
@@ -16,7 +17,7 @@
   .instructions{
     width: 1875px;
     height: 25px;
-    text-align: right;
+    text-align: center;
     background-color: lightgrey;
     font-size: 20px;
   }

@@ -15,29 +15,35 @@ function clickableGrid( rows, cols, callback ){
 
 var lastClicked;
 var clicks=1;
+var startingCoord = [];
+var endingCoord = [];
+var wallCoords = [];
 
 if (clicks == 1){
      selectStart()
      createbutton()
     }
   
-var grid = clickableGrid(2,5,function(el,row,col){
+var grid = clickableGrid(20,62,function(el,row,col){
     if (clicks >= 1 && clicks < 3){
       if (clicks == 1){
         el.className='clicked';
+        startingCoord.push(row+1, col+1); 
         selectEnd()
       }
       el.className='clicked';
     }
   
     if (clicks == 2){
+      endingCoord.push(row+1, col+1);
       selectWalls()
     }
   
     if (clicks >= 3){
+      var coordinate  = [row+1, col+1]
+      wallCoords.push(coordinate)
       el.className='wall';
     }
-    console.log("You clicked on row:",row+1, "col:", col+1);
     clicks++;
 });
 
@@ -68,8 +74,36 @@ function createbutton(){
 }
 
 function pathfinding(){
-  console.log("Hello")
+  console.log("Starting coordinate: " + startingCoord)
+  console.log("Ending coordinate: " + endingCoord)
+  console.log("Wall Coodinates are: " + wallCoords)
+  loadPath(startingCoord)
 }
+
+// function loadPath(startingCoord){
+//     var xhttp = new XMLHttpRequest();
+//     xhttp.onreadystatechange = function (){
+//       if (this.readyState == 4 && this.status == 200) {
+//         console.log(startingCoord)
+//       }
+//     };
+//     xhttp.open("GET", Dijkstra.py, true);
+//     xhttp.send;
+// }
+
+function loadPath(startingCoord){
+  $.ajax({
+    type: "POST",
+    headers: {"Content-Type": "application/json"},
+    url: $SCRIPT_ROOT + "/Dijkstra",
+    data: {param: startingCoord}
+  }).done(function (x){
+    console.log("Executed")
+  });
+}
+
+
+
 
 
 
@@ -87,6 +121,6 @@ function arrayGrid(){
   console.log(squares)
 }
 
-arrayGrid()
+//arrayGrid()
 
 document.body.appendChild(grid);
